@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: interestserver
+  labels:
+    app: interestserver
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interestserver
+  template:
+    metadata:
+      labels:
+        app: interestserver
+    spec:
+      containers:
+      - name: interestserver
+        image: ramandev/res-svc:v1
+        ports:
+        - containerPort: 3001
