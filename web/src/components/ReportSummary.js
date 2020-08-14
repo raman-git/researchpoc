@@ -7,7 +7,7 @@ class ReportSummary extends Component {
         
         return (
             <div className="list-item">
-                <a className="list-item-title" href={reportid + "html"}> {title}</a>
+                <a className="list-item-title" href={reportid + ".html"}> {title}</a>
                 <div className="list-item-summary">{summary.substring(0, 60)}...</div>
                 <div className="list-item-author">{this.getAuthors(authors)}</div>
                 <div className="list-item-pubdate">{pubtime}</div>

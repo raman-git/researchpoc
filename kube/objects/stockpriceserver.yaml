@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stockpriceserver
+  labels:
+    app: stockpriceserver
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stockpriceserver
+  template:
+    metadata:
+      labels:
+        app: stockpriceserver
+    spec:
+      containers:
+      - name: stockpriceserver
+        image: ramandev/res-svc:v2
+        env:
+        - name: PORT
+          value: "3003"
+        ports:
+        - containerPort: 3003

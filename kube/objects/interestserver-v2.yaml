@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: interestserverv2
+  labels:
+    app: interestserver
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interestserver
+  template:
+    metadata:
+      labels:
+        app: interestserver
+    spec:
+      containers:
+      - name: interestserver
+        image: ramandev/res-svc:v2
+        env:
+        - name: stockservice
+          value: http://stockprice-service:3003/stockprice
+        ports:
+        - containerPort: 3001

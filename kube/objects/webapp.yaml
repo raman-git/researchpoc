@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resweb
+  labels:
+    app: resweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resweb
+  template:
+    metadata:
+      labels:
+        app: resweb
+    spec:
+      containers:
+      - name: resweb
+        image: ramandev/resweb:v1
+        ports:
+        - containerPort: 8020
+        

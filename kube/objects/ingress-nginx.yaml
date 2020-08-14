@@ -23,5 +23,5 @@
           servicePort: 3001
        - path: /(.*)
          backend:
-           serviceName: web-service
-           servicePort: 80           
+           serviceName: resweb-service
+           servicePort: 80

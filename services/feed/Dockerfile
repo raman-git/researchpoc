@@ -7,7 +7,7 @@
 # EXPOSE 3000
 
 
-FROM node:12
+FROM node:12-alpine
 
 # Create app directory
 WORKDIR /usr/src/app

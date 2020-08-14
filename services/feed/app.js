@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var feedRouter = require('./routes/feed');
 var interestsRouter = require('./routes/interests');
+var stockpriceRouter = require('./routes/stockprice');
+
 
 var app = express();
 
@@ -23,6 +25,13 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/', indexRouter);
 app.use('/feed', feedRouter);
 app.use('/interests', interestsRouter);
+app.use('/stockprice', stockpriceRouter);
+
+app.get("/test", async function(req,res) {
+  const client = request(req.app);
+  const stockprice = await client.get("/stockprice");
+    res.send(stockprice);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

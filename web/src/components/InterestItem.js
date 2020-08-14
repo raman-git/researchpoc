@@ -3,14 +3,12 @@ import PropTypes from 'prop-types'
 class InterestItem extends Component {
     
     render() {
-        
-        return (
-            <div className="interest"> {this.props.interest.name} </div>
+        const {name, price, trend} = this.props.interest;
+        let className = "price " + trend;
+        return ( 
+            <div className="interest"> {name} <span className={className}>{price}</span></div>
         )
-
     }
-    
 }
-
 
 export default InterestItem;
