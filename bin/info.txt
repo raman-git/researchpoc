@@ -19,7 +19,20 @@ kubectl get canary -oyaml
 k describe ts interest-service //ts = trafficsplit
 linkerd stat ts //same as dashboard
 kg ts interest-service -oyaml //shows all 3 backends, primry canary
-k [-n canary-dep] port-forward svc/interestserver [<localport>:]3001
+k [-n canary-dep] port-forward svc/interest-service [<localport>:]3001
+//delete canary setup
+k delete canary interestserver
+k port-forward svc/interest-service 5001:3001 &
 
-after changing deploy version, watch canary using
+//change image
+kubectl set image deployment/interestserver interestserver=ramandev/res-svc:v2
+//after changing deploy version, watch canary using
 kubectl get canary --watch
+
+//deployment logs
+kubectl -n linkerd logs deployment/flagger -f | jq .msg
+
+
+alias setv2="kubectl set image deployment/interestserver interestserver=ramandev/res-svc:v2"
+alias setv1="kubectl set image deployment/interestserver interestserver=ramandev/res-svc:v1"
+alias watch="kubectl get canary --watch"
