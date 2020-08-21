@@ -1,0 +1,27 @@
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: canarybyheader
+  namespace: default
+spec:
+  provider: nginx
+  ingressRef:
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    name: example-ingress
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: interestserver
+  service:
+    name: interest-service
+    port: 3001
+  analysis:
+    interval: 10s
+    iterations: 10
+    threshold: 5
+    match:
+      - headers:
+          Cache-Control:
+            exact: "no-cache"
+    

@@ -1,0 +1,33 @@
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: canarywithingress
+  namespace: default
+spec:
+  provider: nginx
+  ingressRef:
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    name: example-ingress
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: interestserver
+  service:
+    name: interest-service
+    port: 3001
+  analysis:
+    interval: 10s
+    threshold: 5
+    stepWeight: 25
+    maxWeight: 100
+    metrics:
+    - name: request-success-rate
+      thresholdRange:
+        min: 90
+      interval: 1m
+    - name: request-duration
+      thresholdRange:
+        max: 500
+      interval: 1m
+    

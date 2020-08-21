@@ -17,6 +17,9 @@ spec:
     spec:
       containers:
       - name: interestserver
-        image: ramandev/res-svc:v1
+        image: ramandev/res-svc:v2
+        env:
+        - name: stockservice
+          value: http://stockprice-service:3003/stockprice
         ports:
         - containerPort: 3001

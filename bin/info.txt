@@ -1,2 +1,25 @@
 $ kubectl port-forward service/polling-app-server 8080:8080
-kubectl exec -t -i podname bash
+kubectl exec -t -i podname bash or printenv
+curl 10.96.38.212:3001/stockprice
+
+#docker build -t name
+#docker inspect
+docker exec -t -i mycontainer /bin/bash
+
+# copy nginx files
+$ cd data
+$ cp -r /c/Users/rrama/dev/researchpoc/services/feed/build/* .
+cp /c/Users/rrama/dev/node/express/public/research/a*.html .
+cp /c/Users/rrama/dev/node/express/public/research/*.css .
+cp /c/Users/rrama/dev/node/express/public/research/*.js .
+
+# canary
+k describe canary/interestserver
+kubectl get canary -oyaml
+k describe ts interest-service //ts = trafficsplit
+linkerd stat ts //same as dashboard
+kg ts interest-service -oyaml //shows all 3 backends, primry canary
+k [-n canary-dep] port-forward svc/interestserver [<localport>:]3001
+
+after changing deploy version, watch canary using
+kubectl get canary --watch
