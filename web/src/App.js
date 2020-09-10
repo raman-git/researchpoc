@@ -29,10 +29,18 @@ class App extends Component {
   };
   componentDidMount() {
     let apiRoot = this.getUrlVars()["apiroot"] || '/api/';
-    axios.get(apiRoot + "feed")
+    let iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
+    let pilot = window.location.search.indexOf('pilot') >= 0;
+    let options = {
+      headers: {
+        'iOS':`${iOS}`,
+        'pilot': `${pilot}`  
+      }
+    };
+    axios.get(apiRoot + "feed", options)
     .then(res => this.setState({reports: res.data}))
 
-    axios.get(apiRoot + "interests")
+    axios.get(apiRoot + "interests", options)
     .then(res => this.setState({interests: res.data}))
     console.log('apiroot = ' + apiRoot);
   }

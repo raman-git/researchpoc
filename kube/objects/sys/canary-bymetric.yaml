@@ -1,7 +1,7 @@
 apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
-  name: canarywithingress
+  name: canarybymetric
   namespace: default
 spec:
   provider: nginx
@@ -24,7 +24,7 @@ spec:
     metrics:
     - name: request-success-rate
       thresholdRange:
-        min: 90
+        min: 99
       interval: 1m
     - name: request-duration
       thresholdRange:

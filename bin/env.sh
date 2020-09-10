@@ -1,6 +1,9 @@
 alias k="kubectl"
-export PATH=$PATH:$HOME/.linkerd2/bin:$HOME/dev/researchpoc/bin
+export PATH=$PATH:$HOME/.linkerd2/bin:$HOME/dev/researchpoc/bin:/c/dev/tools/bin
 alias kgp="kubectl get pods"
 alias kgs="kubectl get service"
 alias kgd="kubectl get deployment"
 alias kg="kubectl get "
+alias kd="kubectl describe "
+alias l="linkerd"
+alias mk="/c/Users/rrama/bin/old/minikube"

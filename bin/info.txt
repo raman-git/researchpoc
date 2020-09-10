@@ -1,17 +1,13 @@
 $ kubectl port-forward service/polling-app-server 8080:8080
 kubectl exec -t -i podname bash or printenv
+k exec -ti resweb-7bd8cb76dd-xd72s --container resweb curl http://stockprice-service:3003/stockprice
 curl 10.96.38.212:3001/stockprice
+hosts c:\Windows\System32\Drivers\etc\hosts
 
 #docker build -t name
 #docker inspect
 docker exec -t -i mycontainer /bin/bash
 
-# copy nginx files
-$ cd data
-$ cp -r /c/Users/rrama/dev/researchpoc/services/feed/build/* .
-cp /c/Users/rrama/dev/node/express/public/research/a*.html .
-cp /c/Users/rrama/dev/node/express/public/research/*.css .
-cp /c/Users/rrama/dev/node/express/public/research/*.js .
 
 # canary
 k describe canary/interestserver
@@ -36,3 +32,12 @@ kubectl -n linkerd logs deployment/flagger -f | jq .msg
 alias setv2="kubectl set image deployment/interestserver interestserver=ramandev/res-svc:v2"
 alias setv1="kubectl set image deployment/interestserver interestserver=ramandev/res-svc:v1"
 alias watch="kubectl get canary --watch"
+alias rd="kubectl delete deployment interestserver && kubectl create -f interestserver.yaml && kubectl apply -f interestserver-svc.yaml && linkinject interestserver.yaml && clear"
+
+curl http://url.to/yml | linkerd uninject - | kubectl apply -f -
+curl http://url.to/yml | linkerd inject - | kubectl apply -f -
+
+kubectl delete -n kube-system deployments.apps metrics-server
+
+
+minikube start --extra-config=controller-manager.horizontal-pod-autoscaler-upscale-delay=1m --extra-config=controller-manager.horizontal-pod-autoscaler-downscale-delay=1m --extra-config=controller-manager.horizontal-pod-autoscaler-sync-period=10s --extra-config=controller-manager.horizontal-pod-autoscaler-downscale-stabilization=1m
