@@ -1,5 +1,7 @@
 prometheus:
   url: http://linkerd-prometheus.linkerd.svc
+  port: 9090
+  path: ""
 
 rules:
   default: false
