@@ -1,4 +1,5 @@
 $ kubectl port-forward service/polling-app-server 8080:8080
+install flagger: kubectl apply -k github.com/weaveworks/flagger/kustomize/linkerd
 kubectl exec -t -i podname bash or printenv
 k exec -ti resweb-7bd8cb76dd-xd72s --container resweb curl http://stockprice-service:3003/stockprice
 curl 10.96.38.212:3001/stockprice
@@ -33,6 +34,8 @@ alias setv2="kubectl set image deployment/interestserver interestserver=ramandev
 alias setv1="kubectl set image deployment/interestserver interestserver=ramandev/res-svc:v1"
 alias watch="kubectl get canary --watch"
 alias rd="kubectl delete deployment interestserver && kubectl create -f interestserver.yaml && kubectl apply -f interestserver-svc.yaml && linkinject interestserver.yaml && clear"
+alias dch="k delete canary canarybyheader"
+alias dcm="k delete canary canarybymetric"
 
 curl http://url.to/yml | linkerd uninject - | kubectl apply -f -
 curl http://url.to/yml | linkerd inject - | kubectl apply -f -

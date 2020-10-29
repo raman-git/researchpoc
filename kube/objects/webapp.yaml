@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: resweb
-        image: ramandev/resweb:v1
+        image: ramandev/resweb:v2
         ports:
         - containerPort: 8020
         
